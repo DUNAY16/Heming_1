@@ -64,183 +64,338 @@ namespace Heming_1
 
         static BitArray MyCoding(BitArray messageArray)
         {
-            int countBits = messageArray.Count; // кількість біт в масиві
-            pochatok = messageArray.Count;
-            int newBits = (int)Math.Ceiling(countBits / 5.0) * 4;
-
-            int lastBits = countBits + newBits;
-            for (int d = 0; d < 100; d++)
+            if (1==2)
             {
-                if (lastBits % 9 == 0)
-                {
-                    break;
-                }
-                else
-                {
-                    lastBits++;
-                }
-            }
-            BitArray resultat = new BitArray(lastBits);
-            BitArray messageCoded = new BitArray(lastBits); // новий пустий масив біт
-            for (int i = 0; i < countBits; i += 5)
-            {
+                int countBits = messageArray.Count; // кількість біт в масиві
+                pochatok = messageArray.Count;
+                int newBits = (int)Math.Ceiling(countBits / 5.0) * 4;
 
-
-                BitArray pol = new BitArray(5);
-
-                for (int j = 0; j < 5; j++)
+                int lastBits = countBits + newBits;
+                for (int d = 0; d < 100; d++)
                 {
-                    if (j + i >= countBits)
+                    if (lastBits % 9 == 0)
                     {
-                        pol[j] = false;
+                        break;
                     }
                     else
                     {
-                        pol[j] = messageArray[j + i];
+                        lastBits++;
                     }
                 }
+                BitArray resultat = new BitArray(lastBits);
+                BitArray messageCoded = new BitArray(lastBits); // новий пустий масив біт
+                for (int i = 0; i < countBits; i += 5)
+                {
 
-                for (int a = 0; a < 1; a++)
-                {
-                    resultat[2] = pol[4];
-                    resultat[4] = pol[3];
-                    resultat[5] = pol[2];
-                    resultat[6] = pol[1];
-                    resultat[8] = pol[0];
-                }
-                BitArray pol1 = new BitArray(9);
-                for (int a = 0; a < 1; a++)
-                {
-                    pol1[0] = false;
-                    pol1[1] = false;
-                    pol1[2] = pol[4];
-                    pol1[3] = false;
-                    pol1[4] = pol[3];
-                    pol1[5] = pol[2];
-                    pol1[6] = pol[1];
-                    pol1[7] = false;
-                    pol1[8] = pol[0];
-                }
-                BitArray m1 = new BitArray(9);     //(1, 0, 1, 0, 1, 0, 1, 0, 1);
-                m1[0] = true; m1[1] = false; m1[2] = true; m1[3] = false; m1[4] = true; m1[5] = false; m1[6] = true; m1[7] = false; m1[8] = true;
-                BitArray m2 = new BitArray(9);       //(0, 1, 1, 0, 0, 1, 1, 0, 0);
-                m2[0] = false; m2[1] = true; m2[2] = true; m2[3] = false; m2[4] = false; m2[5] = true; m2[6] = true; m2[7] = false; m2[8] = false;
-                BitArray m3 = new BitArray(9);       //(0, 0, 0, 1, 1, 1, 1, 0, 0);
-                m3[0] = false; m3[1] = false; m3[2] = false; m3[3] = true; m3[4] = true; m3[5] = true; m3[6] = true; m3[7] = false; m3[8] = false;
-                BitArray m4 = new BitArray(9);      //(0, 0, 0, 0, 0, 0, 0, 1, 1);
-                m4[0] = false; m4[1] = false; m4[2] = false; m4[3] = false; m4[4] = false; m4[5] = false; m4[6] = false; m4[7] = true; m4[8] = true;
-                BitArray sohran = new BitArray(4);
-                int provirka = 0;
-                int provirka1 = 0;
-                int provirka2 = 0;
-                int provirka3 = 0;
-                for (int k = 0; k < 4; k++)
-                {
-                    if (k == 0)
+
+                    BitArray pol = new BitArray(5);
+
+                    for (int j = 0; j < 5; j++)
                     {
-                        for (int l = 0; l < 9; l++)
+                        if (j + i >= countBits)
                         {
-                            if (pol1[l] & m1[l] == true)
-                            {
-                                provirka++;
-                            }
-                            else { }
+                            pol[j] = false;
+                        }
+                        else
+                        {
+                            pol[j] = messageArray[j + i];
                         }
                     }
-                    if (k == 1)
+
+                    for (int a = 0; a < 1; a++)
                     {
-                        for (int l = 0; l < 9; l++)
+                        resultat[2] = pol[4];
+                        resultat[4] = pol[3];
+                        resultat[5] = pol[2];
+                        resultat[6] = pol[1];
+                        resultat[8] = pol[0];
+                    }
+                    BitArray pol1 = new BitArray(9);
+                    for (int a = 0; a < 1; a++)
+                    {
+                        pol1[0] = false;
+                        pol1[1] = false;
+                        pol1[2] = pol[4];
+                        pol1[3] = false;
+                        pol1[4] = pol[3];
+                        pol1[5] = pol[2];
+                        pol1[6] = pol[1];
+                        pol1[7] = false;
+                        pol1[8] = pol[0];
+                    }
+                    BitArray m1 = new BitArray(9);     //(1, 0, 1, 0, 1, 0, 1, 0, 1);
+                    m1[0] = true; m1[1] = false; m1[2] = true; m1[3] = false; m1[4] = true; m1[5] = false; m1[6] = true; m1[7] = false; m1[8] = true;
+                    BitArray m2 = new BitArray(9);       //(0, 1, 1, 0, 0, 1, 1, 0, 0);
+                    m2[0] = false; m2[1] = true; m2[2] = true; m2[3] = false; m2[4] = false; m2[5] = true; m2[6] = true; m2[7] = false; m2[8] = false;
+                    BitArray m3 = new BitArray(9);       //(0, 0, 0, 1, 1, 1, 1, 0, 0);
+                    m3[0] = false; m3[1] = false; m3[2] = false; m3[3] = true; m3[4] = true; m3[5] = true; m3[6] = true; m3[7] = false; m3[8] = false;
+                    BitArray m4 = new BitArray(9);      //(0, 0, 0, 0, 0, 0, 0, 1, 1);
+                    m4[0] = false; m4[1] = false; m4[2] = false; m4[3] = false; m4[4] = false; m4[5] = false; m4[6] = false; m4[7] = true; m4[8] = true;
+                    BitArray sohran = new BitArray(4);
+                    int provirka = 0;
+                    int provirka1 = 0;
+                    int provirka2 = 0;
+                    int provirka3 = 0;
+                    for (int k = 0; k < 4; k++)
+                    {
+                        if (k == 0)
                         {
-                            if (pol1[l] & m2[l] == true)
+                            for (int l = 0; l < 9; l++)
                             {
-                                provirka1++;
+                                if (pol1[l] & m1[l] == true)
+                                {
+                                    provirka++;
+                                }
+                                else { }
                             }
-                            else { }
+                        }
+                        if (k == 1)
+                        {
+                            for (int l = 0; l < 9; l++)
+                            {
+                                if (pol1[l] & m2[l] == true)
+                                {
+                                    provirka1++;
+                                }
+                                else { }
+                            }
+                        }
+                        if (k == 2)
+                        {
+                            for (int l = 0; l < 9; l++)
+                            {
+                                if (pol1[l] & m3[l] == true)
+                                {
+                                    provirka2++;
+                                }
+                                else { }
+                            }
+                        }
+                        if (k == 3)
+                        {
+                            for (int l = 0; l < 9; l++)
+                            {
+                                if (pol1[l] & m4[l] == true)
+                                {
+                                    provirka3++;
+                                }
+                                else { }
+                            }
                         }
                     }
-                    if (k == 2)
+                    if (provirka % 2 == 0)
                     {
-                        for (int l = 0; l < 9; l++)
-                        {
-                            if (pol1[l] & m3[l] == true)
-                            {
-                                provirka2++;
-                            }
-                            else { }
-                        }
+                        resultat[0] = false;
                     }
-                    if (k == 3)
+                    else { resultat[0] = true; }
+                    if (provirka1 % 2 == 0)
                     {
-                        for (int l = 0; l < 9; l++)
-                        {
-                            if (pol1[l] & m4[l] == true)
-                            {
-                                provirka3++;
-                            }
-                            else { }
-                        }
+                        resultat[1] = false;
                     }
-                }
-                if (provirka % 2 == 0)
-                {
-                    resultat[0] = false;
-                }
-                else { resultat[0] = true; }
-                if (provirka1 % 2 == 0)
-                {
-                    resultat[1] = false;
-                }
-                else { resultat[1] = true; }
-                if (provirka2 % 2 == 0)
-                {
-                    resultat[3] = false;
-                }
-                else { resultat[3] = true; }
-                if (provirka3 % 2 == 0)
-                {
-                    resultat[7] = false;
-                }
-                else { resultat[7] = true; }
+                    else { resultat[1] = true; }
+                    if (provirka2 % 2 == 0)
+                    {
+                        resultat[3] = false;
+                    }
+                    else { resultat[3] = true; }
+                    if (provirka3 % 2 == 0)
+                    {
+                        resultat[7] = false;
+                    }
+                    else { resultat[7] = true; }
 
 
 
 
-                for (int k = 0; k < 9; k++)
-                {
-                    messageCoded[k + (9 * (i / 5))] = resultat[k];
+                    for (int k = 0; k < 9; k++)
+                    {
+                        messageCoded[k + (9 * (i / 5))] = resultat[k];
+                    }
+
                 }
 
+                return messageCoded;
             }
+            if (2 == 2)
+            {
+                int countBits = messageArray.Count; // кількість біт в масиві
+                pochatok = messageArray.Count;
+                int newBits = (int)Math.Ceiling(countBits / 4.0) * 3;
+                int lastBits = countBits + newBits;
+                for (int d = 0; d < 100; d++)
+                {
+                    if (lastBits % 7 == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        lastBits++;
+                    }
+                }
+                BitArray resultat = new BitArray(lastBits);
+                BitArray messageCoded = new BitArray(lastBits); // новий пустий масив біт
+                for (int i = 0; i < countBits; i += 4)
+                {
+                    BitArray pol = new BitArray(4);
 
-            return messageCoded;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (j + i >= countBits)
+                        {
+                            pol[j] = false;
+                        }
+                        else
+                        {
+                            pol[j] = messageArray[j + i];
+                        }
+                    }
+
+                    for (int a = 0; a < 1; a++)
+                    {
+                        resultat[2] = pol[3];
+                        resultat[4] = pol[2];
+                        resultat[5] = pol[1];
+                        resultat[6] = pol[0];
+                    }
+                    BitArray pol1 = new BitArray(7);
+                    for (int a = 0; a < 1; a++)
+                    {
+                        pol1[0] = false;
+                        pol1[1] = false;
+                        pol1[2] = pol[3];
+                        pol1[3] = false;
+                        pol1[4] = pol[2];
+                        pol1[5] = pol[1];
+                        pol1[6] = pol[0];
+                    }
+                    BitArray m1 = new BitArray(7);     //(1, 0, 1, 0, 1, 0, 1, 0, 1);
+                    m1[0] = true; m1[1] = false; m1[2] = true; m1[3] = false; m1[4] = true; m1[5] = false; m1[6] = true; 
+                    BitArray m2 = new BitArray(7);       //(0, 1, 1, 0, 0, 1, 1, 0, 0);
+                    m2[0] = false; m2[1] = true; m2[2] = true; m2[3] = false; m2[4] = false; m2[5] = true; m2[6] = true;
+                    BitArray m3 = new BitArray(7);       //(0, 0, 0, 1, 1, 1, 1, 0, 0);
+                    m3[0] = false; m3[1] = false; m3[2] = false; m3[3] = true; m3[4] = true; m3[5] = true; m3[6] = true;
+                    BitArray sohran = new BitArray(3);
+                    int provirka = 0;
+                    int provirka1 = 0;
+                    int provirka2 = 0;
+                    for (int k = 0; k <3; k++)
+                    {
+                        if (k == 0)
+                        {
+                            for (int l = 0; l < 7; l++)
+                            {
+                                if (pol1[l] & m1[l] == true)
+                                {
+                                    provirka++;
+                                }
+                                else { }
+                            }
+                        }
+                        if (k == 1)
+                        {
+                            for (int l = 0; l < 7; l++)
+                            {
+                                if (pol1[l] & m2[l] == true)
+                                {
+                                    provirka1++;
+                                }
+                                else { }
+                            }
+                        }
+                        if (k == 2)
+                        {
+                            for (int l = 0; l < 7; l++)
+                            {
+                                if (pol1[l] & m3[l] == true)
+                                {
+                                    provirka2++;
+                                }
+                                else { }
+                            }
+                        }
+                        
+                    }
+                    if (provirka % 2 == 0)
+                    {
+                        resultat[0] = false;
+                    }
+                    else { resultat[0] = true; }
+                    if (provirka1 % 2 == 0)
+                    {
+                        resultat[1] = false;
+                    }
+                    else { resultat[1] = true; }
+                    if (provirka2 % 2 == 0)
+                    {
+                        resultat[3] = false;
+                    }
+                    else { resultat[3] = true; }
+
+                    for (int k = 0; k < 7; k++)
+                    {
+                        messageCoded[k + (7 * (i / 4))] = resultat[k];
+                    }
+
+                }
+
+                return messageCoded;
+            }
         }
 
         static BitArray MyDeCoding(BitArray messageArray2)
         {
-            int countBits = messageArray2.Count; // кількість біт в масиві
-            BitArray messageDeCoded = new BitArray(dovj); // новий пустий масив біт
-            int schet = countBits;
-            int a = 8;
-            int b = 6;
-            int r = 5;
-            int c = 4;
-            int m = 2;
-            for (int i = 0; i < schet; i += 5)
+            if (1 == 2)
             {
-                if (i + 3 >= dovj || i + 4 >= dovj || i + 2 >= dovj || i + 1 >= dovj || i >= dovj) { break; }
-                if (a >= countBits || b >= countBits || r >= countBits || c >= countBits || m >= countBits ) { break; }
-                messageDeCoded[i] = messageArray2[a];
-                messageDeCoded[i + 1] = messageArray2[b];
-                messageDeCoded[i + 2] = messageArray2[r];
-                messageDeCoded[i + 3] = messageArray2[c];
-                messageDeCoded[i + 4] = messageArray2[m];
-                a += 9;
-                b += 9;
-                r += 9;
-                c += 9;
-                m += 9;
+                int countBits = messageArray2.Count; // кількість біт в масиві
+                BitArray messageDeCoded = new BitArray(dovj); // новий пустий масив біт
+                int schet = countBits;
+                int a = 8;
+                int b = 6;
+                int r = 5;
+                int c = 4;
+                int m = 2;
+                for (int i = 0; i < schet; i += 5)
+                {
+                    if (i + 3 >= dovj || i + 4 >= dovj || i + 2 >= dovj || i + 1 >= dovj || i >= dovj) { break; }
+                    if (a >= countBits || b >= countBits || r >= countBits || c >= countBits || m >= countBits) { break; }
+                    messageDeCoded[i] = messageArray2[a];
+                    messageDeCoded[i + 1] = messageArray2[b];
+                    messageDeCoded[i + 2] = messageArray2[r];
+                    messageDeCoded[i + 3] = messageArray2[c];
+                    messageDeCoded[i + 4] = messageArray2[m];
+                    a += 9;
+                    b += 9;
+                    r += 9;
+                    c += 9;
+                    m += 9;
+                }
+                return messageDeCoded;
             }
-            return messageDeCoded;
+            if (2 == 2)
+            {
+                int countBits = messageArray2.Count; // кількість біт в масиві
+                BitArray messageDeCoded = new BitArray(dovj); // новий пустий масив біт
+                int schet = countBits;
+                int a = 6;
+                int b = 5;
+                int r = 4;
+                int c = 2;
+                for (int i = 0; i < schet; i += 4)
+                {
+                    if (i + 3 >= dovj || i + 4 >= dovj || i + 2 >= dovj || i + 1 >= dovj || i >= dovj) { break; }
+                    if (a >= countBits || b >= countBits || r >= countBits || c >= countBits) { break; }
+                    messageDeCoded[i] = messageArray2[a];
+                    messageDeCoded[i + 1] = messageArray2[b];
+                    messageDeCoded[i + 2] = messageArray2[r];
+                    messageDeCoded[i + 3] = messageArray2[c];
+                    a += 7;
+                    b += 7;
+                    r += 7;
+                    c += 7;
+                }
+                return messageDeCoded;
+            }
         }
 
 
@@ -338,6 +493,12 @@ namespace Heming_1
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            radioButton1.Checked = true;
+            comboBox1.SelectedItem = "4";
         }
     }
     }
