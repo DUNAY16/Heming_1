@@ -63,9 +63,29 @@ namespace Heming_1.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _136456 {
+            get {
+                object obj = ResourceManager.GetObject("136456", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3tochku {
             get {
                 object obj = ResourceManager.GetObject("3tochku", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dragon {
+            get {
+                object obj = ResourceManager.GetObject("dragon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

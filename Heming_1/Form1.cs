@@ -216,7 +216,7 @@ namespace Heming_1
 
                 return messageCoded;
             }
-            if (2 == 2)
+            if (2 == 3)
             {
                 int countBits = messageArray.Count; // кількість біт в масиві
                 pochatok = messageArray.Count;
@@ -341,7 +341,107 @@ namespace Heming_1
 
                 return messageCoded;
             }
+            if (2 == 2)
+            {
+                int countBits = messageArray.Count; // кількість біт в масиві
+                pochatok = messageArray.Count;
+                int newBits = (int)Math.Ceiling(countBits / 1.0) * 2;
+                int lastBits = countBits + newBits;
+                for (int d = 0; d < 100; d++)
+                {
+                    if (lastBits % 3 == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        lastBits++;
+                    }
+                }
+                BitArray resultat = new BitArray(lastBits);
+                BitArray messageCoded = new BitArray(lastBits); // новий пустий масив біт
+                for (int i = 0; i < countBits; i += 1)
+                {
+                    BitArray pol = new BitArray(1);
+
+                    for (int j = 0; j < 1; j++)
+                    {
+                        if (j + i >= countBits)
+                        {
+                            pol[j] = false;
+                        }
+                        else
+                        {
+                            pol[j] = messageArray[j + i];
+                        }
+                    }
+
+                    for (int a = 0; a < 1; a++)
+                    {
+                        resultat[2] = pol[0];
+                    }
+                    BitArray pol1 = new BitArray(3);
+                    for (int a = 0; a < 1; a++)
+                    {
+                        pol1[0] = false;
+                        pol1[1] = false;
+                        pol1[2] = pol[0];
+                    }
+                    BitArray m1 = new BitArray(7);     //(1, 0, 1, );
+                    m1[0] = true; m1[1] = false; m1[2] = true; 
+                    BitArray m2 = new BitArray(7);       //(0, 1, 1,);
+                    m2[0] = false; m2[1] = true; m2[2] = true; ;
+                    BitArray sohran = new BitArray(2);
+                    int provirka = 0;
+                    int provirka1 = 0;
+                    for (int k = 0; k < 2; k++)
+                    {
+                        if (k == 0)
+                        {
+                            for (int l = 0; l < 3; l++)
+                            {
+                                if (pol1[l] & m1[l] == true)
+                                {
+                                    provirka++;
+                                }
+                                else { }
+                            }
+                        }
+                        if (k == 1)
+                        {
+                            for (int l = 0; l <3; l++)
+                            {
+                                if (pol1[l] & m2[l] == true)
+                                {
+                                    provirka1++;
+                                }
+                                else { }
+                            }
+                        }
+
+                    }
+                    if (provirka % 2 == 0)
+                    {
+                        resultat[0] = false;
+                    }
+                    else { resultat[0] = true; }
+                    if (provirka1 % 2 == 0)
+                    {
+                        resultat[1] = false;
+                    }
+                    else { resultat[1] = true; }
+                    for (int k = 0; k < 3; k++)
+                    {
+                        messageCoded[k + (3 * (i / 1))] = resultat[k];
+                    }
+
+                }
+
+                return messageCoded;
+            }
+
         }
+
 
         static BitArray MyDeCoding(BitArray messageArray2)
         {
@@ -372,7 +472,7 @@ namespace Heming_1
                 }
                 return messageDeCoded;
             }
-            if (2 == 2)
+            if (2 == 3)
             {
                 int countBits = messageArray2.Count; // кількість біт в масиві
                 BitArray messageDeCoded = new BitArray(dovj); // новий пустий масив біт
@@ -393,6 +493,22 @@ namespace Heming_1
                     b += 7;
                     r += 7;
                     c += 7;
+                }
+                return messageDeCoded;
+            }
+
+            if (2 == 2)
+            {
+                int countBits = messageArray2.Count; // кількість біт в масиві
+                BitArray messageDeCoded = new BitArray(dovj); // новий пустий масив біт
+                int schet = countBits;
+                int a = 2;
+                for (int i = 0; i < schet; i += 1)
+                {
+                    if (i >= dovj) { break; }
+                    if (a >= countBits ) { break; }
+                    messageDeCoded[i] = messageArray2[a];
+                    a += 3;
                 }
                 return messageDeCoded;
             }
